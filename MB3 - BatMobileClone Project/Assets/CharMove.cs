@@ -16,7 +16,9 @@ public class CharMove : MonoBehaviour
     private bool jumping;
     private Rigidbody rb;
 
-    //[Header("Camera")]
+    [Header("Camera")]
+    [SerializeField] private Transform CamAnchor;
+    private Vector3 lookVec;
 
     #endregion
     // Start is called before the first frame update
@@ -44,6 +46,28 @@ public class CharMove : MonoBehaviour
         #endregion
     }
 
+    public void Update()
+    {
+        #region Camera
+        Vector3 angles = CamAnchor.localEulerAngles + lookVec;
+        float angle = (CamAnchor.localEulerAngles + lookVec).x;
+
+        Debug.Log(CamAnchor.localEulerAngles);
+
+        if (angle > 180 && angle < 340)
+        {
+            angles.x = 340;
+        }
+        else if (angle < 180 && angle > 40)
+        {
+            angles.x = 40;
+        }
+
+        CamAnchor.localEulerAngles = angles;
+
+        #endregion
+    }
+
 
     public void OnMove(InputValue input)
     {
@@ -57,4 +81,10 @@ public class CharMove : MonoBehaviour
         BattleMode = !BattleMode;
     }
 
+    public void OnLook(InputValue input)
+    {
+        Vector2 inputVec = input.Get<Vector2>();
+
+        lookVec = new Vector3(inputVec.y, inputVec.x, 0f);
+    }
 }
