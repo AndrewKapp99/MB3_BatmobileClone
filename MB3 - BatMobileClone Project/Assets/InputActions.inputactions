@@ -31,7 +31,7 @@
                 },
                 {
                     "name": "SwitchMode",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "14c237ba-9217-4ce8-8299-e85687b81a52",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -266,6 +266,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "SwitchMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "164e01c9-7781-4dc5-9727-a0bdb8a87b4a",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad;Keyboard&Mouse",
                     "action": "SwitchMode",
                     "isComposite": false,
                     "isPartOfComposite": false

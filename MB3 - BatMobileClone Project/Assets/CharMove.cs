@@ -10,11 +10,13 @@ public class CharMove : MonoBehaviour
     [SerializeField] private float MaxSpeed;
     [SerializeField] private float Weight;
     [SerializeField] private float ForceOutput;
-    [SerializeField] private bool BattleMode;
+    [SerializeField] public bool BattleMode;
     [SerializeField] private float BattleSpeed;
     private Vector3 moveVec;
     private bool jumping;
     private Rigidbody rb;
+
+    public Vector2 InVector;
 
     [Header("Camera")]
     [SerializeField] private Transform CamAnchor;
@@ -72,6 +74,8 @@ public class CharMove : MonoBehaviour
     public void OnMove(InputValue input)
     {
         Vector2 inputVec = input.Get<Vector2>();
+
+        InVector = inputVec;
 
         moveVec = new Vector3(inputVec.x, 0, inputVec.y);
     }
