@@ -20,6 +20,8 @@ public class CharMove : MonoBehaviour
 
     [Header("Camera")]
     [SerializeField] private Transform CamAnchor;
+    [SerializeField] private Transform Camera;
+    [SerializeField] private Transform PlayerMesh;
     private Vector3 lookVec;
 
     #endregion
@@ -33,8 +35,18 @@ public class CharMove : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+        Vector3 CamFwd = Camera.forward;
+        Vector3 CamRt = Camera.right;
+
+        CamFwd.y = 0f;
+        CamRt.y = 0f;
+
+        moveVec = moveVec.normalized;
+
+        Vector3 d = (CamFwd * moveVec.z + CamRt * moveVec.x);
+
         #region Movement
-        rb.AddForce(moveVec * ForceOutput);
+        rb.AddForce(d.normalized * ForceOutput);
 
         if (rb.velocity.magnitude >= MaxSpeed)
         {
@@ -46,6 +58,13 @@ public class CharMove : MonoBehaviour
         }
 
         #endregion
+
+        #region Camera Management
+        if (rb.velocity.magnitude >= 0.5f && InVector.magnitude != 0 && BattleMode)
+        {
+            PlayerMesh.localRotation = Quaternion.Lerp(Quaternion.LookRotation(CamFwd), PlayerMesh.localRotation, 0.01f);
+        }
+        #endregion
     }
 
     public void Update()
@@ -53,8 +72,6 @@ public class CharMove : MonoBehaviour
         #region Camera
         Vector3 angles = CamAnchor.localEulerAngles + lookVec;
         float angle = (CamAnchor.localEulerAngles + lookVec).x;
-
-        Debug.Log(CamAnchor.localEulerAngles);
 
         if (angle > 180 && angle < 340)
         {
@@ -82,6 +99,7 @@ public class CharMove : MonoBehaviour
 
     public void OnSwitchMode(InputValue input)
     {
+        double inD = input.Get<double>();
         BattleMode = !BattleMode;
     }
 
