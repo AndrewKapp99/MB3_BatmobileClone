@@ -8,11 +8,15 @@ public class AnimationController : MonoBehaviour
     public Vector2 BlenderVector;
     public bool BattleMode;
 
+    public Vector3 AnglularV;
+
     private CharMove cm;
+    private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         cm = GetComponentInParent<CharMove>();
+        rb = GetComponentInParent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -25,5 +29,7 @@ public class AnimationController : MonoBehaviour
         anim.SetFloat("y", BlenderVector.y);
 
         anim.SetBool("Battle", BattleMode);
+
+        AnglularV = rb.angularVelocity;
     }
 }
