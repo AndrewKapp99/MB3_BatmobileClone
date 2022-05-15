@@ -99,11 +99,4 @@ public class CharMove : MonoBehaviour
 
         moveVec = new Vector3(inputVec.x, 0, inputVec.y);
     }
-
-    public void OnSwitchMode(InputValue input)
-    {
-        BattleMode = !BattleMode;
-    }
-
-
 }
