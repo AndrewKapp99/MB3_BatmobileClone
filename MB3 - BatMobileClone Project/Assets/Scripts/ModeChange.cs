@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class ModeChange : MonoBehaviour
 {
+    [SerializeField] private CinemachineVirtualCamera PursuitCam, BattleCam;
     private CharMove cm;
     private PursuitMode pm;
     private Rigidbody rb;
@@ -19,7 +21,23 @@ public class ModeChange : MonoBehaviour
 
     public void OnSwitchMode(InputValue input)
     {
-        cm.enabled = !cm.enabled;
-        pm.enabled = !pm.enabled;
+        float temp = input.Get<float>();
+        if (temp > 0.5f)
+        {
+            cm.enabled = !cm.enabled;
+            pm.enabled = !pm.enabled;
+            SwitchCamera();
+        }
+    }
+
+    private void SwitchCamera(){
+        if(PursuitCam.Priority == 1){
+            PursuitCam.Priority = 0;
+            BattleCam.Priority = 1;
+        }
+        else if (BattleCam.Priority == 1) {
+            BattleCam.Priority = 0;
+            PursuitCam.Priority = 1;
+        }
     }
 }

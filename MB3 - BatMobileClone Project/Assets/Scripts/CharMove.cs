@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class CharMove : MonoBehaviour
 {
     #region Values
     [Header("Movement")]
-    [SerializeField] private float MaxSpeed;
-    [SerializeField][Range(0.0f, 1.0f)] private float throttle;
-    public Transform ThrottlePoint, SteeringPoint;
-    public float SteeringDirection, TurnForce;
-    [SerializeField] private float Weight;
     [SerializeField] private float ForceOutput;
     [SerializeField] public bool BattleMode;
     [SerializeField] private float BattleSpeed;
@@ -26,6 +22,11 @@ public class CharMove : MonoBehaviour
     [SerializeField] private Transform PlayerMesh;
     public Vector3 lookVec;
 
+    [Header("Transforms")]
+    [SerializeField] private Transform WheelArmFL;
+    [SerializeField] private Transform WheelArmFR, WheelArmBL, WheelArmBR, MainBody, Cannon;
+    [SerializeField] private Cannon cn;
+
     [Header("Misc")]
     public bool Underpower;
 
@@ -36,25 +37,20 @@ public class CharMove : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    void OnEnable()
+    {
+        cn.enabled = true;
+        ReadyUp();
+    }
+
+    void OnDisable()
+    {
+        cn.enabled = false;
+        ChillOut();
+    }
+
     public void Update()
     {
-        /*#region Camera
-        Vector3 angles = CamAnchor.localEulerAngles + lookVec;
-        float angle = (CamAnchor.localEulerAngles + lookVec).x;
-
-        if (angle > 180 && angle < 340)
-        {
-            angles.x = 340;
-        }
-        else if (angle < 180 && angle > 40)
-        {
-            angles.x = 40;
-        }
-        angles.z = 0f;
-
-        CamAnchor.localEulerAngles = angles;
-
-        #endregion*/
         #region Boolean Control
         if (InVector.magnitude != 0 && BattleMode)
         {
@@ -84,12 +80,30 @@ public class CharMove : MonoBehaviour
         if (BattleMode)
         {
             rb.AddForce(d.normalized * ForceOutput);
-            if (rb.velocity.magnitude >= BattleSpeed && BattleMode)
+            if (rb.velocity.magnitude >= BattleSpeed)
             {
                 rb.AddForce(-(rb.velocity.normalized) * ForceOutput);
             }
         }
         #endregion
+    }
+
+    void ReadyUp()
+    {
+        WheelArmFL.DOLocalMove(new Vector3(-0.03f, 0, 0), 0.3f);
+        WheelArmFR.DOLocalMove(new Vector3(0.03f, 0, 0), 0.3f);
+        WheelArmBL.DOLocalMove(new Vector3(-0.03f, 0, 0), 0.3f);
+        WheelArmBR.DOLocalMove(new Vector3(0.03f, 0, 0), 0.3f);
+        Cannon.DOLocalMove(new Vector3(0f, 9f, -4f), 0.03f);
+    }
+
+    void ChillOut()
+    {
+        WheelArmFL.DOLocalMove(new Vector3(-0.0f, 0, 0), 0.3f);
+        WheelArmFR.DOLocalMove(new Vector3(0.0f, 0, 0), 0.3f);
+        WheelArmBL.DOLocalMove(new Vector3(-0.0f, 0, 0), 0.3f);
+        WheelArmBR.DOLocalMove(new Vector3(0.0f, 0, 0), 0.3f);
+        Cannon.DOLocalMove(new Vector3(0f, 4.2f, -4f), 0.3f);
     }
 
     public void OnMove(InputValue input)
