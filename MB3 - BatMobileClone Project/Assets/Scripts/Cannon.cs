@@ -41,7 +41,7 @@ public class Cannon : MonoBehaviour
     public void OnFire(){
         Debug.Log("Firing");
         _angles = Camera.forward;
-        GameObject newRound = Instantiate(Projectile, LaunchPnt.position, LaunchPnt.rotation);
+        GameObject newRound = Instantiate(Projectile, LaunchPnt.position, Quaternion.Euler(LaunchPnt.rotation.eulerAngles + new Vector3(90f, 0f, 0f)));
         Rigidbody newRB = newRound.GetComponent<Rigidbody>();
         newRB.velocity = ProjectileSpeed * _angles;
     }
