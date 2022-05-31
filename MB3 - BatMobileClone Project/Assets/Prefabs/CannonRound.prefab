@@ -129,3 +129,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 1
+  Effect: {fileID: 5283367797167087374, guid: 7006a86677bdc5b41b87e949631ac220, type: 3}

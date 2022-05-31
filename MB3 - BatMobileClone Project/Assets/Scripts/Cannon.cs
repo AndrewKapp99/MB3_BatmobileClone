@@ -9,6 +9,7 @@ public class Cannon : MonoBehaviour
     public Rigidbody body;
     public Transform Camera, barrel;
     public GameObject Projectile;
+    public GameObject Flash;
     public Transform LaunchPnt;
     public float ProjectileSpeed;
     
@@ -38,9 +39,10 @@ public class Cannon : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(-90, angles.y, 0f));
     }
 
-    public void OnFire(){
+    private void OnFire(){
         Debug.Log("Firing");
         _angles = Camera.forward;
+        GameObject mFlash = Instantiate(Flash, LaunchPnt.position, LaunchPnt.rotation);
         GameObject newRound = Instantiate(Projectile, LaunchPnt.position, Quaternion.Euler(LaunchPnt.rotation.eulerAngles + new Vector3(90f, 0f, 0f)));
         Rigidbody newRB = newRound.GetComponent<Rigidbody>();
         newRB.velocity = ProjectileSpeed * _angles;

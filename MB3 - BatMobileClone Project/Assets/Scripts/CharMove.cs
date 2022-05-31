@@ -26,6 +26,7 @@ public class CharMove : MonoBehaviour
     [SerializeField] private Transform WheelArmFL;
     [SerializeField] private Transform WheelArmFR, WheelArmBL, WheelArmBR, MainBody, Cannon;
     [SerializeField] private Cannon cn;
+    [SerializeField] private RotateToFace rtf;
 
     [Header("Misc")]
     public bool Underpower;
@@ -40,12 +41,14 @@ public class CharMove : MonoBehaviour
     void OnEnable()
     {
         cn.enabled = true;
+        rtf.enabled = true;
         ReadyUp();
     }
 
     void OnDisable()
     {
         cn.enabled = false;
+        rtf.enabled = false;
         ChillOut();
     }
 
@@ -110,7 +113,6 @@ public class CharMove : MonoBehaviour
     {
         Vector2 inputVec = input.Get<Vector2>();
         InVector = inputVec;
-
         moveVec = new Vector3(inputVec.x, 0, inputVec.y);
     }
 }
