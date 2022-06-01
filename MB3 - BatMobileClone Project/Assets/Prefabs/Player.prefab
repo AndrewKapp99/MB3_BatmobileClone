@@ -85,7 +85,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1551751100927502791}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -94,8 +94,8 @@ Transform:
   - {fileID: 524321633436997018}
   - {fileID: 2909000519511096106}
   - {fileID: 742717940951335878}
-  m_Father: {fileID: 6990660557210554130}
-  m_RootOrder: 1
+  m_Father: {fileID: 7388552938174779309}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6442161606877388599
 GameObject:
@@ -126,7 +126,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6990660557210554130}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6574609750047885306
 GameObject:
@@ -226,7 +226,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7388552938174779309}
-  - {fileID: 7686104878327387837}
   - {fileID: 4176948381775879709}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -382,6 +381,7 @@ MonoBehaviour:
   MainBody: {fileID: 3491125014420107038}
   Cannon: {fileID: 3572850948848920502}
   cn: {fileID: 0}
+  rtf: {fileID: 0}
   Underpower: 0
 --- !u!114 &6990660557210554134
 MonoBehaviour:
@@ -703,6 +703,7 @@ MonoBehaviour:
   Camera: {fileID: 0}
   barrel: {fileID: 6638951372542785752}
   Projectile: {fileID: 0}
+  Flash: {fileID: 0}
   LaunchPnt: {fileID: 0}
   ProjectileSpeed: 0
   coolDown: 0

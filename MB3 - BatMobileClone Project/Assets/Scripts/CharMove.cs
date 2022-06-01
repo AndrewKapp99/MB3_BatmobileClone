@@ -12,6 +12,7 @@ public class CharMove : MonoBehaviour
     [SerializeField] public bool BattleMode;
     [SerializeField] private float BattleSpeed;
     private Vector3 moveVec;
+    private Vector3 looking;
     private Rigidbody rb;
 
     public Vector2 InVector;
@@ -43,6 +44,7 @@ public class CharMove : MonoBehaviour
         cn.enabled = true;
         rtf.enabled = true;
         ReadyUp();
+        PlayerMesh.localRotation = Quaternion.Euler(new Vector3(CamAnchor.localRotation.x, CamAnchor.localRotation.y, CamAnchor.localRotation.z));
     }
 
     void OnDisable()
@@ -50,10 +52,15 @@ public class CharMove : MonoBehaviour
         cn.enabled = false;
         rtf.enabled = false;
         ChillOut();
+        rb.rotation = PlayerMesh.rotation;
+        PlayerMesh.localRotation = Quaternion.identity;
+        CamAnchor.localRotation = Quaternion.identity;
     }
 
     public void Update()
     {
+        looking = Camera.forward;
+        
         #region Boolean Control
         if (InVector.magnitude != 0 && BattleMode)
         {
@@ -114,5 +121,6 @@ public class CharMove : MonoBehaviour
         Vector2 inputVec = input.Get<Vector2>();
         InVector = inputVec;
         moveVec = new Vector3(inputVec.x, 0, inputVec.y);
+        //PlayerMesh.GetComponent<RotateToFace>().rotateToFace(CamAnchor.rotation);
     }
 }
