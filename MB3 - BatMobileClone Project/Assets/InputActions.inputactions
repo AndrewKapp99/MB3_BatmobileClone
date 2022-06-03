@@ -62,7 +62,7 @@
                 {
                     "name": "Fire",
                     "type": "Button",
-                    "id": "86535bae-3ae7-43cc-86f4-6832bedfe6ab",
+                    "id": "e38aafa3-4490-4e78-bef8-8f1be2bfb726",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -347,11 +347,22 @@
                 },
                 {
                     "name": "",
-                    "id": "e3f179f3-8185-457c-b4d6-eea1c4f521f8",
+                    "id": "d5d3d323-5a42-47b6-b02e-c76d34a93d20",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aa4243c8-368d-496f-94ed-dfb2d0ae5db1",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
