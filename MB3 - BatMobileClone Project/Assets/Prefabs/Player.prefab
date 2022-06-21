@@ -444,7 +444,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6990660557210554141}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d48086c1b275f54e84bc0705a7ad4e8, type: 3}
   m_Name: 
@@ -699,13 +699,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93cce89e5ebfa9941a96993838b45abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 0}
+  body: {fileID: 6990660557210554128}
   Camera: {fileID: 0}
   barrel: {fileID: 6638951372542785752}
-  Projectile: {fileID: 0}
-  Flash: {fileID: 0}
-  LaunchPnt: {fileID: 0}
-  ProjectileSpeed: 0
+  Projectile: {fileID: 2364178330856891214, guid: da6d77adde76aca45b6ec5705e9b6839, type: 3}
+  Flash: {fileID: 4723634044178159626, guid: d5625a33d396b6d478612cfe43a70ad7, type: 3}
+  LaunchPnt: {fileID: 3947735248025961670}
+  ProjectileSpeed: 500
   coolDown: 0
 --- !u!4 &1262823194027055956 stripped
 Transform:
