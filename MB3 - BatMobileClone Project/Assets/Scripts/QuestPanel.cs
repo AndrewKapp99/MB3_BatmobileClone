@@ -8,7 +8,7 @@ public class QuestPanel : MonoBehaviour
 {
     public IslandManager island;
     public GameObject prefab;
-    public Sprite targetIcon, enemyIcon;
+    [SerializeField] private Sprite targetIcon, enemyIcon;
 
     private int _target, _enemy;
     private ComponentPanel _targetTracker, _enemyTracker;
@@ -21,13 +21,19 @@ public class QuestPanel : MonoBehaviour
 
         _targetT = Instantiate(prefab, this.transform);
         _targetTracker = _targetT.GetComponent<ComponentPanel>();
+        _targetTracker.SetIcon(targetIcon);
 
         _enemyT = Instantiate(prefab, this.transform);
         _enemyTracker = _enemyT.GetComponent<ComponentPanel>();
+        _enemyTracker.SetIcon(enemyIcon);
     }
 
     private void Update()
     {
+        _target = island.numTarget;
+        _enemy = island.numEnemy;
         
+        _targetTracker.SetNumber($"{_target}");
+        _enemyTracker.SetNumber($"{_enemy}");
     }
 }

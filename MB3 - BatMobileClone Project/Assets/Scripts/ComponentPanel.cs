@@ -21,10 +21,12 @@ public class ComponentPanel : MonoBehaviour
     public void SetIcon(Sprite icon)
     {
         _icon = icon;
+        img.sprite = icon;
     }
 
     public void SetNumber(string str)
     {
         _str = str;
+        txt.text = str;
     }
 }
