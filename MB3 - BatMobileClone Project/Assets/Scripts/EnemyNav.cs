@@ -7,7 +7,7 @@ public class EnemyNav : MonoBehaviour
     private NavMeshAgent _nmAgent;
     [SerializeField] private List<Transform> destinations;
 
-    private int _currentPos = 0;
+    public int _currentPos = 0;
 
     private void Awake()
     {

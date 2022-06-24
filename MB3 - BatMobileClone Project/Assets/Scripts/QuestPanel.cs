@@ -19,13 +19,19 @@ public class QuestPanel : MonoBehaviour
         _target = island.numTarget;
         _enemy = island.numEnemy;
 
-        _targetT = Instantiate(prefab, this.transform);
-        _targetTracker = _targetT.GetComponent<ComponentPanel>();
-        _targetTracker.SetIcon(targetIcon);
+        if (_target > 0)
+        {
+            _targetT = Instantiate(prefab, this.transform);
+            _targetTracker = _targetT.GetComponent<ComponentPanel>();
+            _targetTracker.SetIcon(targetIcon);
+        }
 
-        _enemyT = Instantiate(prefab, this.transform);
-        _enemyTracker = _enemyT.GetComponent<ComponentPanel>();
-        _enemyTracker.SetIcon(enemyIcon);
+        if (_enemy > 0)
+        {
+            _enemyT = Instantiate(prefab, this.transform);
+            _enemyTracker = _enemyT.GetComponent<ComponentPanel>();
+            _enemyTracker.SetIcon(enemyIcon);
+        }
     }
 
     private void Update()
@@ -33,7 +39,7 @@ public class QuestPanel : MonoBehaviour
         _target = island.numTarget;
         _enemy = island.numEnemy;
         
-        _targetTracker.SetNumber($"{_target}");
-        _enemyTracker.SetNumber($"{_enemy}");
+        _targetTracker?.SetNumber($"{_target}");
+        _enemyTracker?.SetNumber($"{_enemy}");
     }
 }
