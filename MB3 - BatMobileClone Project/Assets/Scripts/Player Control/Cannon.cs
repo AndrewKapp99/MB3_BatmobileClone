@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class Cannon : MonoBehaviour
 {
     public Rigidbody body;
-    public Transform Camera, barrel;
+    public Transform Camera, barrel, target;
     public GameObject Projectile;
     public GameObject Flash;
     public Transform LaunchPnt;
@@ -16,12 +16,13 @@ public class Cannon : MonoBehaviour
     public float coolDown;
 
     private Vector3 _angles;
+    private float _incAngle;
     
 
     void OnEnable()
     {
         transform.rotation = Quaternion.Euler(new Vector3(-90f, Camera.rotation.y, 0f));
-        barrel.rotation = Quaternion.Euler(new Vector3(Camera.rotation.x, 0f, 0f));
+        barrel.LookAt(target);
     }
 
     void OnDisable()
