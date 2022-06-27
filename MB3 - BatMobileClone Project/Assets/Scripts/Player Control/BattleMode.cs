@@ -8,6 +8,7 @@ public class BattleMode : MonoBehaviour
 {
     [SerializeField] private WheelCollider BattleWheel;
     [SerializeField] private Transform WheelArmFL, WheelArmFR, WheelArmBL, WheelArmBR, MainBody;
+    [SerializeField] private GameObject crossHair;
     public float power;
 
     private float angle;

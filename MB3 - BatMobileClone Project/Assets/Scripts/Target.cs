@@ -8,7 +8,7 @@ public class Target : MonoBehaviour
     private void OnDestroy()
     {
         var temp = transform.parent.gameObject.GetComponent<IslandManager>();
-        temp.Remove(this.gameObject);
+        temp.RemoveTarget(this.gameObject);
     }
 
     private void OnCollisionEnter(Collision other)

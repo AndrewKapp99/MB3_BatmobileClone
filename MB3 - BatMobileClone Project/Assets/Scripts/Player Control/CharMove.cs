@@ -32,6 +32,8 @@ public class CharMove : MonoBehaviour
     [Header("Misc")]
     public bool Underpower;
 
+    [SerializeField] private GameObject crossHair;
+
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -43,6 +45,7 @@ public class CharMove : MonoBehaviour
     {
         cn.enabled = true;
         rtf.enabled = true;
+        crossHair.SetActive(true);
         ReadyUp();
         PlayerMesh.localRotation = Quaternion.Euler(new Vector3(CamAnchor.localRotation.x, CamAnchor.localRotation.y, CamAnchor.localRotation.z));
     }
@@ -51,6 +54,7 @@ public class CharMove : MonoBehaviour
     {
         cn.enabled = false;
         rtf.enabled = false;
+        crossHair.SetActive(false);
         ChillOut();
         rb.rotation = PlayerMesh.rotation;
         PlayerMesh.localRotation = Quaternion.identity;

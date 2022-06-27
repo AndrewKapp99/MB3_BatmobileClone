@@ -40,8 +40,8 @@ public class Cannon : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(-90, angles.y, 0f));
     }
 
-    private void OnFire(){
-        Debug.Log("Firing");
+    private void OnFire()
+    { 
         _angles = Camera.forward;
         GameObject mFlash = Instantiate(Flash, LaunchPnt.position, LaunchPnt.rotation);
         GameObject newRound = Instantiate(Projectile, LaunchPnt.position, Quaternion.Euler(LaunchPnt.rotation.eulerAngles + new Vector3(90f, 0f, 0f)));
