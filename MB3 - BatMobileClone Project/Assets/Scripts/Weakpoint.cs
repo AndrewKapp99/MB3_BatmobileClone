@@ -6,7 +6,7 @@ using UnityEngine;
 public class Weakpoint : MonoBehaviour
 {
     public GameObject mainTank;
-    [SerializeField] private Weakpoint exposable;
+    [SerializeField] private MeshRenderer exposable;
     [SerializeField] private Material exposedMat;
     public void OnDestroy()
     {
@@ -15,17 +15,12 @@ public class Weakpoint : MonoBehaviour
             Destroy(mainTank);
             return;
         }
-        exposable.Expose();
-    }
-
-    public void Expose()
-    {
-        GetComponent<BoxCollider>().enabled = true;
-        GetComponent<MeshRenderer>().material = exposedMat;
+        exposable.material = exposedMat;
     }
 
     private void OnCollisionEnter(Collision other)
     {
+        Debug.Log("Hit");
         Destroy(this.gameObject);
     }
 }

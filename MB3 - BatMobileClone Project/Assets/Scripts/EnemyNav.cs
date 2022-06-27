@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,6 +13,14 @@ public class EnemyNav : MonoBehaviour
     private void Awake()
     {
         _nmAgent = GetComponent<NavMeshAgent>();
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var x in destinations)
+        {
+            Destroy(x.gameObject);
+        }
     }
 
     private void OnEnable()

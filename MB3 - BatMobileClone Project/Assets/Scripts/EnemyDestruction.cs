@@ -5,5 +5,8 @@ using UnityEngine;
 
 public class EnemyDestruction : MonoBehaviour
 {
-    
+    private void OnCollisionEnter(Collision other)
+    {
+        Destroy(this.gameObject);
+    }
 }

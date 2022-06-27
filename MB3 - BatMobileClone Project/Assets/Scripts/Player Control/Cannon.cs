@@ -17,8 +17,8 @@ public class Cannon : MonoBehaviour
 
     private Vector3 _angles;
     private float _incAngle;
-    
 
+    public float _t;
     void OnEnable()
     {
         transform.rotation = Quaternion.Euler(new Vector3(-90f, Camera.rotation.y, 0f));
@@ -38,14 +38,23 @@ public class Cannon : MonoBehaviour
         //angles.x = angles.x - 90;
         barrel.localRotation = Quaternion.Euler(new Vector3(angles.x, 0f, 0f));
         transform.rotation = Quaternion.Euler(new Vector3(-90, angles.y, 0f));
+
+        if (_t > 0)
+        {
+            _t -= Time.deltaTime;
+        }
     }
 
     private void OnFire()
-    { 
-        _angles = Camera.forward;
-        GameObject mFlash = Instantiate(Flash, LaunchPnt.position, LaunchPnt.rotation);
-        GameObject newRound = Instantiate(Projectile, LaunchPnt.position, Quaternion.Euler(LaunchPnt.rotation.eulerAngles + new Vector3(90f, 0f, 0f)));
-        Rigidbody newRB = newRound.GetComponent<Rigidbody>();
-        newRB.velocity = ProjectileSpeed * _angles;
+    {
+        if (_t <= 0)
+        {
+            _angles = Camera.forward;
+            GameObject mFlash = Instantiate(Flash, LaunchPnt.position, LaunchPnt.rotation);
+            GameObject newRound = Instantiate(Projectile, LaunchPnt.position, Quaternion.Euler(LaunchPnt.rotation.eulerAngles + new Vector3(90f, 0f, 0f)));
+            Rigidbody newRB = newRound.GetComponent<Rigidbody>();
+            newRB.velocity = ProjectileSpeed * _angles;
+            _t = coolDown;
+        }
     }
 }
