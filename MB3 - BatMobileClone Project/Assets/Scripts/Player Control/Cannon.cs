@@ -21,12 +21,14 @@ public class Cannon : MonoBehaviour
     public float _t;
     void OnEnable()
     {
+        GetComponent<PlayerInput>().enabled = true;
         transform.rotation = Quaternion.Euler(new Vector3(-90f, Camera.rotation.y, 0f));
         barrel.LookAt(target);
     }
 
     void OnDisable()
     {
+        GetComponent<PlayerInput>().enabled = false;
         transform.rotation = Quaternion.Euler(new Vector3(-90, 0, 0));
         barrel.rotation = Quaternion.Euler(Vector3.zero);
     }
@@ -43,6 +45,8 @@ public class Cannon : MonoBehaviour
         {
             _t -= Time.deltaTime;
         }
+        
+        LaunchPnt.LookAt(target);
     }
 
     private void OnFire()
