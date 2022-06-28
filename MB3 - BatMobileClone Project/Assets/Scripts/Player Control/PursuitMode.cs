@@ -14,7 +14,7 @@ public class PursuitMode : MonoBehaviour
     private float RearPowerDist, FrontPowerDist, InputIntensity,
                     steeringIn, steering,
                     FrontBrakeDist, BackBrakeDist;
-    private float brakes;
+    private float brakes, _reverse;
     private Rigidbody rb;
 
     // Start is called before the first frame update
@@ -64,11 +64,7 @@ public class PursuitMode : MonoBehaviour
                 axleInfo.LeftWheel.steerAngle = steer;
                 axleInfo.RightWheel.steerAngle = steer;
             }
-            if (brakes > 0 && rb.velocity.magnitude < 0.2f)
-            {
-                axleInfo.LeftWheel.motorTorque = -1 * Power;
-                axleInfo.RightWheel.motorTorque = -1 * Power;
-            }
+
             if (brakes > 0.01)
             {
                 axleInfo.LeftWheel.brakeTorque = brakes * BrakingForce;
@@ -84,6 +80,13 @@ public class PursuitMode : MonoBehaviour
                 axleInfo.LeftWheel.motorTorque = motor;
                 axleInfo.RightWheel.motorTorque = motor;
             }
+
+            if (_reverse > 0.1)
+            {
+                axleInfo.LeftWheel.motorTorque = motor * -0.5f;
+                axleInfo.RightWheel.motorTorque = motor * -0.5f;
+            }
+            
             ApplyLocalPositionToVisuals(axleInfo.LeftWheel, axleInfo.LeftWheelT);
             ApplyLocalPositionToVisuals(axleInfo.RightWheel, axleInfo.RightWheelT);
         }
@@ -121,7 +124,10 @@ public class PursuitMode : MonoBehaviour
         transform.transform.rotation = rotation;
     }
 
-
+    public void OnReverse(InputValue value)
+    {
+        _reverse = value.Get<float>();
+    }
 
 }
 
